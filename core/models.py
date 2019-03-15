@@ -1,7 +1,10 @@
 from django.db import models
 from datetime import datetime, date
+from django.contrib.auth import get_user_model
 
-# Create your models here.
+
+User = get_user_model()
+
 
 class Author(models.Model):
     """Contains identifying information about the Author to allow faciliation of searches based on previous works and author name."""
@@ -22,10 +25,10 @@ class Book(models.Model):
     description = models.TextField(max_length=1024, help_text="Enter a description of the book's topic")
     date_added = models.DateTimeField(auto_now_add=True)
     book_url = models.URLField(max_length=200, default="")
-    book_slug = models.SlugField(default="a")
+    book_slug = models.SlugField()
 
     class Meta:
-        ordering = ['-date_added']
+        ordering = ['date_added']
 
     def __str__(self):
         return self.title

@@ -5,8 +5,9 @@ from core.models import Author, Book, Programming_Languages
 
 admin.site.register(Author)
 
-
-admin.site.register(Book)
-
-
 admin.site.register(Programming_Languages)
+
+
+@admin.register(Book)
+class Book(admin.ModelAdmin):
+    prepopulated_fields = {"book_slug": ("title",)}
